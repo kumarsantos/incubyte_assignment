@@ -22,3 +22,7 @@ it("should handle newline as a valid delimiter", () => {
 it("should support custom single-character delimiter", () => {
   expect(stringCalculator("//;\n1;2")).toBe(3);
 });
+
+it("should throw an error for negative numbers", () => {
+  expect(() => stringCalculator("1,-2,3")).toThrow("Negatives not allowed: -2");
+});
