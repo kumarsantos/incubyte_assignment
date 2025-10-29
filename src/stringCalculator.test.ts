@@ -10,3 +10,7 @@ describe("String Calculator", () => {
 it("should return the number itself for a single input", () => {
   expect(stringCalculator("5")).toBe(5);
 });
+
+it("should return the sum of two comma-separated numbers", () => {
+  expect(stringCalculator("1,2")).toBe(3);
+});
