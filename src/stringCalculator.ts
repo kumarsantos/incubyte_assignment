@@ -1,3 +1,7 @@
+function escapeRegex(str: string): string {
+  return str.replace(/[.*+?^${}()|[]\]/g, "$&");
+}
+
 export const stringCalculator = (input: string): number => {
   if (!input) return 0;
 
@@ -15,10 +19,12 @@ export const stringCalculator = (input: string): number => {
   const splitRegex = new RegExp(
     delimiters.map((d) => escapeRegex(d)).join("|")
   );
-  const numbers = numbersPart.split(splitRegex).map(Number);
+  const numbers = numbersPart.split(splitRegex).filter(Boolean).map(Number);
+
+  const negatives = numbers.filter((n) => n < 0);
+  if (negatives.length) {
+    throw new Error(`Negatives not allowed: ${negatives.join(",")}`);
+  }
+
   return numbers.reduce((a, b) => a + b, 0);
 };
-
-function escapeRegex(str: string): string {
-  return str.replace(/[.*+?^${}()|[]\]/g, "$&");
-}
