@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { stringCalculator } from "./stringCalculator";
+import { stringCalculator } from "../utils/stringCalculator";
 
 describe("String Calculator", () => {
   it("should return 0 for an empty string", () => {
