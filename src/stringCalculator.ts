@@ -5,13 +5,26 @@ function escapeRegex(str: string): string {
 export const stringCalculator = (input: string): number => {
   if (!input) return 0;
 
-  let delimiters = [",", "\n"];
+  let delimiters: string[] = [",", "\n"];
   let numbersPart = input;
 
   if (input.startsWith("//")) {
     const match = input.match(/^\/\/(\[.*\]|.)\n/);
+
     if (match) {
-      delimiters = [match[1]];
+      const delimiterDef = match[1];
+
+      if (delimiterDef.startsWith("[")) {
+        const regex = /\[(.*?)\]/g;
+        delimiters = [];
+        let m: RegExpExecArray | null;
+        while ((m = regex.exec(delimiterDef))) {
+          delimiters.push(m[1]);
+        }
+      } else {
+        delimiters = [delimiterDef];
+      }
+
       numbersPart = input.slice(match[0].length);
     }
   }
@@ -26,5 +39,5 @@ export const stringCalculator = (input: string): number => {
     throw new Error(`Negatives not allowed: ${negatives.join(",")}`);
   }
 
-  return numbers.reduce((a, b) => a + b, 0);
+  return numbers.filter((n) => n <= 1000).reduce((a, b) => a + b, 0);
 };
