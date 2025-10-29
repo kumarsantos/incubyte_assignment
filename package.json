@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/incubyte/incubyte-react-a11y-project",
   "dependencies": {
+    "node": "^25.1.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
   },
