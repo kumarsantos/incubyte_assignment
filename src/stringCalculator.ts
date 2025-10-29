@@ -1,3 +1,4 @@
-export const stringCalculator=(str:string):number=>{
-
-}
+export const stringCalculator = (input: string): number => {
+  if (!input) return 0;
+  
+};
