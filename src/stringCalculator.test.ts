@@ -26,3 +26,7 @@ it("should support custom single-character delimiter", () => {
 it("should throw an error for negative numbers", () => {
   expect(() => stringCalculator("1,-2,3")).toThrow("Negatives not allowed: -2");
 });
+
+it("should support multiple or long custom delimiters", () => {
+  expect(stringCalculator("//[][%]\n12%3")).toBe(6);
+});
