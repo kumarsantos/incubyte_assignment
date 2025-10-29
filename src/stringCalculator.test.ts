@@ -18,3 +18,7 @@ it("should return the sum of two comma-separated numbers", () => {
 it("should handle newline as a valid delimiter", () => {
   expect(stringCalculator("1\n2,3")).toBe(6);
 });
+
+it("should support custom single-character delimiter", () => {
+  expect(stringCalculator("//;\n1;2")).toBe(3);
+});
