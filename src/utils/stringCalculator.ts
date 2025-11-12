@@ -1,12 +1,13 @@
-function escapeRegex(str: string): string {
-  return str.replace(/[.*+?^${}()|[]\]/g, "$&");
-}
-
 export const stringCalculator = (input: string): number => {
   if (!input) return 0;
 
+  const modifiedInput = input
+    .split(",")
+    .map((value) => (value.includes("*") ? multiplyTwoNumber(value) : value))
+    .join(",");
+
   let delimiters: string[] = [",", "\n"];
-  let numbersPart = input;
+  let numbersPart = modifiedInput;
 
   if (input.startsWith("//")) {
     const match = input.match(/^\/\/(\[.*\]|.)\n/);
@@ -41,3 +42,11 @@ export const stringCalculator = (input: string): number => {
 
   return numbers.filter((n) => n <= 1000).reduce((a, b) => a + b, 0);
 };
+
+export function escapeRegex(str: string): string {
+  return str.replace(/[.*+?^${}()|[]\]/g, "$&");
+}
+
+export function multiplyTwoNumber(numString: string): number {
+  return numString.split("*").reduce((acc, num) => (acc *= Number(num)), 1);
+}

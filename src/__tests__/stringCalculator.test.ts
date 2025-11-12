@@ -30,3 +30,12 @@ it("should throw an error for negative numbers", () => {
 it("should support multiple or long custom delimiters", () => {
   expect(stringCalculator("//[][%]\n12%3")).toBe(6);
 });
+
+it("should support multiple or long custom delimiters", () => {
+  expect(stringCalculator("//[][%]\n12%3")).toBe(6);
+});
+
+it("should return addition and multiplication of the numbers", () => {
+  expect(stringCalculator("1,2*3")).toBe(7);
+});
+
